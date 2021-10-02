@@ -1,0 +1,29 @@
+<h2>Alunos cadastrados:</h2>
+
+<div>
+    <label for="pesquisa">Buscar: </label>
+    <input (keyup)="searchAluno($event)" type="search">
+</div>
+
+<ul class="alunos">
+    <li *ngFor="let aluno of alunos" 
+    [class.selected]="aluno === selectedAluno"
+    (click)="onSelect(aluno)">
+
+        <span class="badge">{{aluno.id}}</span> {{aluno.nome}}
+
+    </li>
+</ul>
+
+<div *ngIf="selectedAluno">
+    <h2>Informações sobre {{selectedAluno.nome | uppercase}}</h2>
+    <div><span>id: </span>{{selectedAluno.id}}</div>
+    <div>
+        <label for="aluno-nome">nome: </label>
+        <input id="aluno-nome" [(ngModel)]="selectedAluno.nome" placeholder="nome">
+    </div>
+    <div>
+        <label for="aluno-email">contato: </label>
+        <input id="aluno-email" [(ngModel)]="selectedAluno.email" placeholder="email">
+    </div>
+</div>
